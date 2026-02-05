@@ -145,6 +145,11 @@
             </div>
           </div>
         </div>
+
+        <div class="curriculum-controls" aria-hidden="false">
+          <button id="curriculum-prev" class="curriculum-btn" aria-label="Previous">◀</button>
+          <button id="curriculum-next" class="curriculum-btn" aria-label="Next">▶</button>
+        </div>
       </div>
     </section>
 
@@ -368,6 +373,43 @@
 
       cards.forEach(card => observer.observe(card));
     });
+
+    (function () {
+  const container = document.getElementById('curriculum-cards');
+  const prev = document.getElementById('curriculum-prev');
+  const next = document.getElementById('curriculum-next');
+  if (!container) return;
+
+  function getGap() {
+    const styles = getComputedStyle(container);
+    const gap = parseFloat(styles.gap || styles.columnGap || 14);
+    return isNaN(gap) ? 14 : gap;
+  }
+
+  function getScrollAmount() {
+    const card = container.querySelector('.curriculum-card');
+    const gap = getGap();
+    const w = card ? Math.round(card.getBoundingClientRect().width) : Math.round(container.clientWidth * 0.82);
+    return w + gap;
+  }
+
+  prev?.addEventListener('click', () => {
+    container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+  });
+  next?.addEventListener('click', () => {
+    container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+  });
+
+  // Show controls only on small screens
+  function updateControlsVisibility() {
+    const ctrl = document.querySelector('.curriculum-controls');
+    if (!ctrl) return;
+    ctrl.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+  }
+
+  window.addEventListener('resize', updateControlsVisibility);
+  updateControlsVisibility();
+})();
   </script>
 </body>
 </html>

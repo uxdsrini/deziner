@@ -81,7 +81,7 @@ img {
 .nav-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 0 1rem;
   height: 4rem;
   display: flex;
   align-items: center;
@@ -369,6 +369,7 @@ img {
   font-weight: 800;
   margin-bottom: 1.5rem;
   font-family: var(--font-display);
+  margin: 50px 0px;
 }
 
 @media (min-width: 768px) {
@@ -461,96 +462,88 @@ img {
    CURRICULUM SECTION
    =================================== */
 .curriculum-section {
-  background: #fcfcfc;
-  padding: 60px 0;
+  position: relative;
 }
-
-.curriculum-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 48px;
-}
-
-.curriculum-card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.06);
-  padding: 32px 24px 32px 24px;
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  min-height: 180px;
-  transition: box-shadow 0.2s;
-  /* Initial state: cards are shifted left and transparent */
-  opacity: 0;
-  transform: translateX(-60px);
-  transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
-}
-
-/* When revealed: cards slide in and fade in */
-.curriculum-card.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
 .curriculum-number {
-  width: 48px;
-  height: 48px;
-  background: #ffbe23;
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  display: flex;
+  background: var(--color-primary, #e4830d);
+  color: #fff;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8px;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px 0 rgba(255,190,35,0.15);
-  border: 4px solid #fff;
-}
-
-.curriculum-title {
-  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.curriculum-desc {
-  color: #888;
   font-size: 1rem;
-  margin: 0;
+  margin-right: 14px;
+  box-shadow: 0 8px 20px rgba(16,24,40,0.08);
+  flex-shrink: 0;
 }
-
-.curriculum-grid::-webkit-scrollbar {
+.curriculum-controls {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
   display: none;
+  gap: 8px;
+  z-index: 10;
 }
 
-/* Responsive: 2 columns on tablet */
-@media (max-width: 900px) {
+.curriculum-btn {
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Card look + reveal animation */
+.curriculum-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(16,24,40,0.08);
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms;
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+/* When watcher adds .revealed */
+.curriculum-card.revealed { opacity: 1; transform: translateY(0); }
+
+/* Desktop: 3 columns */
+@media (min-width: 768px) {
   .curriculum-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 50px 0px;
   }
+  .curriculum-controls { display: none; }
+  .curriculum-card { min-width: auto; }
 }
 
-/* Mobile: Carousel style */
-@media (max-width: 600px) {
+/* Mobile: horizontal carousel with snap + visible controls */
+@media (max-width: 767px) {
+  .curriculum-controls { display: flex; }
   .curriculum-grid {
     display: flex;
     overflow-x: auto;
-    gap: 16px;
+    -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
-    padding-bottom: 8px;
+    gap: 14px;
+    padding-bottom: 50px;
+    padding-left: 4px;
+    padding-top: 50px;
   }
   .curriculum-card {
-    min-width: 80vw;
-    max-width: 90vw;
-    flex: 0 0 auto;
+    flex: 0 0 82%;
+    min-width: 90%;
     scroll-snap-align: start;
-    margin: 0;
   }
+  /* nicer scrollbar */
+   .curriculum-grid::-webkit-scrollbar { height: 8px; 
+  /*.curriculum-grid::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 8px; } }*/
 }
 
 /* ===================================
@@ -1083,4 +1076,5 @@ img {
     font-size: 1rem;
     padding: 15px;
   }
+}
 }
