@@ -629,7 +629,7 @@ img {
    MENTOR SECTION
    =================================== */
 .mentor-section {
-  padding: 6rem 0;
+  /* padding: 6rem 0; */
   background-color: var(--background);
   overflow: hidden;
 }
@@ -776,7 +776,7 @@ img {
    TESTIMONIALS SECTION
    =================================== */
 .testimonials-section {
-  padding: 6rem 0;
+  padding: 6rem 0; 
   background-color: hsla(0, 0%, 97%, 0.3);
 }
 
@@ -1001,6 +1001,12 @@ img {
   color: var(--foreground);
 }
 
+@media (max-width: 767px) {
+  .footer-copyright {
+    font-size: 0.90rem;
+  }
+}
+
 .footer-links {
   display: flex;
   gap: 2rem;
@@ -1114,7 +1120,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(20, 20, 20, 0.85); /* Optional: subtle dark overlay for readability */
+  background: rgba(20, 20, 20, 0.90); /* Optional: subtle dark overlay for readability */
+          padding-bottom: 64px;
 }
 
 .hero-content {
@@ -1162,7 +1169,7 @@ img {
    MENTOR SECTION
    =================================== */
 .mentor-section {
-  padding: 6rem 0;
+  padding: 2rem 0; 
   background-color: var(--background);
   overflow: hidden;
 }
@@ -1309,7 +1316,7 @@ img {
    TESTIMONIALS SECTION
    =================================== */
 .testimonials-section {
-  padding: 6rem 0;
+  /* padding: 6rem 0; */
   background-color: hsla(0, 0%, 97%, 0.3);
 }
 
